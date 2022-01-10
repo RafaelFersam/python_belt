@@ -1,0 +1,47 @@
+{% extends 'app/base.html' %}
+
+{% block titulo %} PANEL DE CITAS AGENDADAS {% endblock %}
+
+{% block contenido %}
+
+{% include 'app/menu.html' %}
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h1>Agendar Citas</h1>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tarea</th>
+                        <th>Fecha</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if citas %}
+                    {% for cita in citas %}
+                    <tr>
+                        <td>{{ cita.id }}</td>
+                        <td>{{ cita.task }}</td>
+                        <td>{{ cita.date }}</td>
+                        <td>{{ cita.status }}</td>
+                        <td>
+                            <a href="/cita/edit/{{cita.id}}"  class="btn btn-primary">Editar</a>
+                            <a href="/cita/delete/{{cita.id}}"  class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="5">No hay tareas</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
